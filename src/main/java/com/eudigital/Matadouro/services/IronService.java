@@ -12,62 +12,66 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.eudigital.matadouro.DTO.PersonDTO;
+import com.eudigital.matadouro.DTO.IronDTO;
+import com.eudigital.matadouro.DTO.IronInsertDTO;
+import com.eudigital.matadouro.entities.Iron;
 import com.eudigital.matadouro.entities.Person;
+import com.eudigital.matadouro.repositories.IronRepository;
 import com.eudigital.matadouro.repositories.PersonRepository;
 import com.eudigital.matadouro.services.exceptions.DatabaseException;
 import com.eudigital.matadouro.services.exceptions.ResourceNotFoundException;
 
 @Service
-public class PersonService {
+public class IronService {
 
 	@Autowired
-	private PersonRepository repository;
+	private IronRepository repository;
+	
+	@Autowired
+	private PersonRepository personRepository;
 	
 	@Transactional(readOnly = true)
-	public Page<PersonDTO> findAllPaged(PageRequest pageRequest) {
-		Page<Person> list = repository.findAll(pageRequest);
+	public Page<IronDTO> findAllPaged(PageRequest pageRequest) {
+		Page<Iron> list = repository.findAll(pageRequest);
 		
-		return list.map(x -> new PersonDTO(x));
+		return list.map(x -> new IronDTO(x));
 	}
 	
 	@Transactional(readOnly = true)
-	public PersonDTO findById(Long id) {
-		Optional<Person> obj = repository.findById(id);
-		Person entity = obj.orElseThrow(() -> new ResourceNotFoundException("Pessoa não encontrada")); 
+	public IronDTO findById(Long id) {
+		Optional<Iron> obj = repository.findById(id);
+		Iron entity = obj.orElseThrow(() -> new ResourceNotFoundException("Ferro não encontrada")); 
 		
-		return new PersonDTO(entity, entity.getIrons());
+		return new IronDTO(entity);
 	}
 
 	@Transactional
-	public PersonDTO insert(PersonDTO dto) {
-		Person entity = new Person();
+	public IronDTO insert(IronInsertDTO dto) {
+		Iron entity = new Iron();
 		
-		entity.setName(dto.getName());
-		entity.setTel(dto.getTel());
-		entity.setType(dto.getType());
+		entity.setId(dto.getId());
+		
+		//Pegando o Person no Banco				
+		Person person = personRepository.getReferenceById(dto.getPerson().getId());
+		entity.setPerson(person);
 		
 		entity = repository.save(entity);
 		
-		return new PersonDTO(entity);
+		return new IronDTO(entity);
 	}
 
 	@Transactional
-	public PersonDTO update(Long id, PersonDTO dto) {
+	public IronDTO update(Long id, IronDTO dto) {
 		try {
-			Person entity = repository.getReferenceById(id);
+			Iron entity = repository.getReferenceById(id);
 
-			entity.setName(dto.getName());
-			entity.setTel(dto.getTel());
-			entity.setType(dto.getType());
-			
-			//Alterar Lista de Ferro
+			entity.setId(dto.getId());
 			
 			entity = repository.save(entity);
-			return new PersonDTO(entity);
+			return new IronDTO(entity);
 		}
 		catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("Pessoa com id " + id +" não encontrada");
+			throw new ResourceNotFoundException("Ferro com id " + id +" não encontrada");
 		}
 	}
 
@@ -76,7 +80,7 @@ public class PersonService {
 			repository.deleteById(id);
 		}
 		catch (EmptyResultDataAccessException e) {
-			throw new ResourceNotFoundException("Pessoa com id " + id +" não encontrada");
+			throw new ResourceNotFoundException("Ferro com id " + id +" não encontrada");
 		}
 		catch (DataIntegrityViolationException e) {
 			throw new DatabaseException("Violação de integridade");

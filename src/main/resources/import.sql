@@ -5,3 +5,4 @@ INSERT INTO tb_person (name, tel, type) VALUES ('Tahinan Souza', '(75) 99999-999
 
 /*IRON*/
 INSERT INTO tb_iron (id, person_id) VALUES (20, 2);
+INSERT INTO tb_iron (id, person_id) VALUES (1, 2);

@@ -1,6 +1,11 @@
 package com.eudigital.matadouro.DTO;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import com.eudigital.matadouro.entities.Iron;
 import com.eudigital.matadouro.entities.Person;
 
 public class PersonDTO implements Serializable {
@@ -10,6 +15,8 @@ public class PersonDTO implements Serializable {
 	private String name;
 	private String tel;
 	private String type;
+	
+	private List<IronDTO> irons = new ArrayList<>();
 	
 	public PersonDTO() {
 	}
@@ -27,6 +34,11 @@ public class PersonDTO implements Serializable {
 		this.name = entities.getName();
 		this.tel = entities.getTel();
 		this.type = entities.getType();
+	}
+	
+	public PersonDTO(Person entities, Set<Iron> irons) {
+		this(entities);
+		irons.forEach(iron -> this.irons.add(new IronDTO(iron)));
 	}
 
 	public Long getId() {
@@ -59,5 +71,13 @@ public class PersonDTO implements Serializable {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public List<IronDTO> getIrons() {
+		return irons;
+	}
+
+	public void setIrons(List<IronDTO> irons) {
+		this.irons = irons;
 	}
 }
