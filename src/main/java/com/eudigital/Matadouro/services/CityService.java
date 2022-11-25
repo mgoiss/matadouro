@@ -14,7 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.eudigital.matadouro.DTO.CityDTO;
 import com.eudigital.matadouro.entities.City;
+import com.eudigital.matadouro.entities.SlaughterValueLog;
 import com.eudigital.matadouro.repositories.CityRepository;
+import com.eudigital.matadouro.repositories.SlaughterValueLogRepository;
 import com.eudigital.matadouro.services.exceptions.DatabaseException;
 import com.eudigital.matadouro.services.exceptions.ResourceNotFoundException;
 
@@ -23,6 +25,9 @@ public class CityService {
 
 	@Autowired
 	private CityRepository repository;
+	
+	@Autowired
+	private SlaughterValueLogRepository slaughterValueLogRepository;
 	
 	@Transactional(readOnly = true)
 	public Page<CityDTO> findAllPaged(PageRequest pageRequest) {
@@ -49,6 +54,9 @@ public class CityService {
 		
 		entity = repository.save(entity);
 		
+		//Gravando Log
+		slaughterValueLogRepository.save(new SlaughterValueLog(entity.getCurrentSlaughterPrice(), entity.getName()));
+		
 		return new CityDTO(entity);
 	}
 
@@ -56,12 +64,21 @@ public class CityService {
 	public CityDTO update(Long id, CityDTO dto) {
 		try {
 			City entity = repository.getReferenceById(id);
+			
+			//Pegando o preço anterior
+			Double otherPrice = entity.getCurrentSlaughterPrice();
 
 			entity.setName(dto.getName());
 			entity.setState(dto.getState());
 			entity.setCurrentSlaughterPrice(dto.getCurrentSlaughterPrice());
 			
 			entity = repository.save(entity);
+			
+			if (Double.compare(otherPrice, entity.getCurrentSlaughterPrice()) != 0) {
+				//Gravando Log
+				slaughterValueLogRepository.save(new SlaughterValueLog(entity.getCurrentSlaughterPrice(), entity.getName()));
+			}
+			
 			return new CityDTO(entity);
 		}
 		catch (EntityNotFoundException e) {
