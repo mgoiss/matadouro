@@ -22,14 +22,19 @@ import com.eudigital.matadouro.DTO.IronDTO;
 import com.eudigital.matadouro.DTO.IronInsertDTO;
 import com.eudigital.matadouro.services.IronService;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping(value = "/irons")
+@Api(value = "Irons")
 public class IronResource {
 	
 	@Autowired
 	private IronService service;
 	
 	@GetMapping
+	@ApiOperation(value = "Listagem de todos os ferros")
 	public ResponseEntity<Page<IronDTO>> findAll(
 			@RequestParam(value = "page", defaultValue = "0") Integer page,
 			@RequestParam(value = "linesPerPage", defaultValue = "12") Integer linesPerPage,
@@ -44,12 +49,14 @@ public class IronResource {
 	}
 	
 	@GetMapping(value = "/{id}")
+	@ApiOperation(value = "Listagem de ferro por ID")
 	public ResponseEntity<IronDTO> findById(@PathVariable Long id) {
 		IronDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
 	
 	@PostMapping
+	@ApiOperation(value = "Inserção de um novo ferros")
 	public ResponseEntity<IronDTO> insert(@RequestBody IronInsertDTO dto) {
 		IronDTO newDto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -58,12 +65,14 @@ public class IronResource {
 	}
 	
 	@PutMapping(value = "/{id}")
+	@ApiOperation(value = "Atualizando um ferro")
 	public ResponseEntity<IronDTO> update(@PathVariable Long id, @RequestBody IronDTO dto) {
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}
 	
 	@DeleteMapping(value = "/{id}")
+	@ApiOperation(value = "Deletando uma ferro")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
 		service.delete(id);
 		return ResponseEntity.noContent().build();
