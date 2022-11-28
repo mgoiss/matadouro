@@ -10,3 +10,6 @@ INSERT INTO tb_iron (id, person_id) VALUES (1, 2);
 /*City*/
 INSERT INTO tb_city (name, state, current_slaughter_price) VALUES ('Ribeira do Pombal', 'Bahia', 150.00);
 INSERT INTO tb_city (name, state, current_slaughter_price) VALUES ('Cicero Dantas', 'Bahia', 200.00);
+
+/*Branch*/
+INSERT INTO tb_branch (name, cnpj, leather_price) VALUES ('Mata Branca', '000.000.000/0000-00', 2.20);
