@@ -19,7 +19,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
   public Docket greetingApi() {
     return new Docket(DocumentationType.SWAGGER_2)
         .select()
-        .apis(RequestHandlerSelectors.basePackage("com.eudigital.matadouro"))
+        .apis(RequestHandlerSelectors.basePackage("com.eudigital.Matadouro"))
         .build()
         .apiInfo(metaData());
 
@@ -30,8 +30,8 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
         .title("Matadouro REST API")
         .description("\"API do sistema do Matadouro\"")
         .version("1.0.0")
-        .license("Apache License Version 2.0")
-        .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
+        //.license("Apache License Version 2.0")
+        //.licenseUrl("https://www.apache.org/licenses/LICENSE-2.0\"")
         .build();
   }
 
