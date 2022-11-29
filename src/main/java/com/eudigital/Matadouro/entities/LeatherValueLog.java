@@ -13,26 +13,25 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "tb_slaughter_value_log")
-public class SlaughterValueLog implements Serializable{
+@Table(name = "tb_leather_value_log")
+public class LeatherValueLog implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Double SlaughterPrice;
-	private String nameCity;
+	private Double leatherPrice;
+	private String nameBranch;
 	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant updatedAt;
 	
-	public SlaughterValueLog() {
-		
+	public LeatherValueLog() {
 	}
-	
-	public SlaughterValueLog(Double slaughterPrice, String nameCity) {
-		SlaughterPrice = slaughterPrice;
-		this.nameCity = nameCity;
+
+	public LeatherValueLog( Double leatherPrice, String nameBranch) {
+		this.leatherPrice = leatherPrice;
+		this.nameBranch = nameBranch;
 	}
 
 	public Long getId() {
@@ -43,30 +42,22 @@ public class SlaughterValueLog implements Serializable{
 		this.id = id;
 	}
 
-	public Double getSlaughterPrice() {
-		return SlaughterPrice;
+	public Double getLeatherPrice() {
+		return leatherPrice;
 	}
 
-	public void setSlaughterPrice(Double slaughterPrice) {
-		SlaughterPrice = slaughterPrice;
+	public void setLeatherPrice(Double leatherPrice) {
+		this.leatherPrice = leatherPrice;
 	}
 
-	public String getNameCity() {
-		return nameCity;
+	public String getNameBranch() {
+		return nameBranch;
 	}
 
-	public void setNameCity(String nameCity) {
-		this.nameCity = nameCity;
+	public void setNameBranch(String nameBranch) {
+		this.nameBranch = nameBranch;
 	}
-
-	public Instant getUpdatedAt() {
-		return updatedAt;
-	}
-
-	public void setUpdatedAt(Instant updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-
+	
 	@PrePersist
 	public void preUpdate() {
 		updatedAt = Instant.now();
@@ -85,7 +76,7 @@ public class SlaughterValueLog implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		SlaughterValueLog other = (SlaughterValueLog) obj;
+		LeatherValueLog other = (LeatherValueLog) obj;
 		return Objects.equals(id, other.id);
 	}
 }

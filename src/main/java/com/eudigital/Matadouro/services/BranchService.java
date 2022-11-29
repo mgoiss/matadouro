@@ -14,7 +14,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.eudigital.matadouro.DTO.BranchDTO;
 import com.eudigital.matadouro.entities.Branch;
+import com.eudigital.matadouro.entities.LeatherValueLog;
 import com.eudigital.matadouro.repositories.BranchRepository;
+import com.eudigital.matadouro.repositories.LeatherValueLogRepository;
 import com.eudigital.matadouro.services.exceptions.DatabaseException;
 import com.eudigital.matadouro.services.exceptions.ResourceNotFoundException;
 
@@ -23,6 +25,9 @@ public class BranchService {
 
 	@Autowired
 	private BranchRepository repository;
+	
+	@Autowired
+	private LeatherValueLogRepository leatherValueLogRepository;
 	
 	@Transactional(readOnly = true)
 	public Page<BranchDTO> findAllPaged(PageRequest pageRequest) {
@@ -49,6 +54,9 @@ public class BranchService {
 		
 		entity = repository.save(entity);
 		
+		//Gravendo Log
+		leatherValueLogRepository.save(new LeatherValueLog(entity.getLeatherPrice(), entity.getName()));
+		
 		return new BranchDTO(entity);
 	}
 
@@ -57,11 +65,21 @@ public class BranchService {
 		try {
 			Branch entity = repository.getReferenceById(id);
 
+			//Pegando o preço anterior
+			Double otherPrice = entity.getLeatherPrice();
+			
 			entity.setName(dto.getName());
 			entity.setCNPJ(dto.getCNPJ());
 			entity.setLeatherPrice(dto.getLeatherPrice());
 			
 			entity = repository.save(entity);
+			
+			if (Double.compare(otherPrice, entity.getLeatherPrice()) != 0) {
+				//Gravando Log
+				leatherValueLogRepository.save(new LeatherValueLog(entity.getLeatherPrice(), entity.getName()));
+
+			}
+			
 			return new BranchDTO(entity);
 		}
 		catch (EntityNotFoundException e) {
