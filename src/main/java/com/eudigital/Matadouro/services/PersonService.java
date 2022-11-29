@@ -1,4 +1,4 @@
-package com.eudigital.matadouro.services;
+package com.eudigital.Matadouro.services;
 
 import java.util.Optional;
 
@@ -12,11 +12,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.eudigital.matadouro.DTO.PersonDTO;
-import com.eudigital.matadouro.entities.Person;
-import com.eudigital.matadouro.repositories.PersonRepository;
-import com.eudigital.matadouro.services.exceptions.DatabaseException;
-import com.eudigital.matadouro.services.exceptions.ResourceNotFoundException;
+import com.eudigital.Matadouro.DTO.PersonDTO;
+import com.eudigital.Matadouro.entities.Person;
+import com.eudigital.Matadouro.repositories.PersonRepository;
+import com.eudigital.Matadouro.services.exceptions.DatabaseException;
+import com.eudigital.Matadouro.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class PersonService {

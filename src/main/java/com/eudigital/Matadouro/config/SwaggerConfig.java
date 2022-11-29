@@ -1,4 +1,4 @@
-package com.eudigital.matadouro.config;
+package com.eudigital.Matadouro.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

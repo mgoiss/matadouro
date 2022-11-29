@@ -1,6 +1,6 @@
-package com.eudigital.matadouro.DTO;
+package com.eudigital.Matadouro.DTO;
 
-import com.eudigital.matadouro.entities.Iron;
+import com.eudigital.Matadouro.entities.Iron;
 
 public class IronDTO {
 

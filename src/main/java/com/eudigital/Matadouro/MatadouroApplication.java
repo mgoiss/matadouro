@@ -1,4 +1,4 @@
-package com.eudigital.matadouro;
+package com.eudigital.Matadouro;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.eudigital.matadouro.resources.exceptions;
+package com.eudigital.Matadouro.resources.exceptions;
 
 import java.io.Serializable;
 import java.time.Instant;

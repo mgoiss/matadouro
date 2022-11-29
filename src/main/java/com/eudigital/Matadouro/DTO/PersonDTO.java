@@ -1,12 +1,12 @@
-package com.eudigital.matadouro.DTO;
+package com.eudigital.Matadouro.DTO;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import com.eudigital.matadouro.entities.Iron;
-import com.eudigital.matadouro.entities.Person;
+import com.eudigital.Matadouro.entities.Iron;
+import com.eudigital.Matadouro.entities.Person;
 
 public class PersonDTO implements Serializable {
 	private static final long serialVersionUID = 1L;

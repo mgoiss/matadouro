@@ -1,4 +1,4 @@
-package com.eudigital.matadouro.DTO;
+package com.eudigital.Matadouro.DTO;
 
 public class IronInsertDTO extends IronDTO {
 	

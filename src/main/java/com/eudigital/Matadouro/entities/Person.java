@@ -1,4 +1,4 @@
-package com.eudigital.matadouro.entities;
+package com.eudigital.Matadouro.entities;
 
 import java.io.Serializable;
 import java.time.Instant;

@@ -1,4 +1,4 @@
-package com.eudigital.matadouro.services;
+package com.eudigital.Matadouro.services;
 
 import java.util.Optional;
 
@@ -12,13 +12,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.eudigital.matadouro.DTO.BranchDTO;
-import com.eudigital.matadouro.entities.Branch;
-import com.eudigital.matadouro.entities.LeatherValueLog;
-import com.eudigital.matadouro.repositories.BranchRepository;
-import com.eudigital.matadouro.repositories.LeatherValueLogRepository;
-import com.eudigital.matadouro.services.exceptions.DatabaseException;
-import com.eudigital.matadouro.services.exceptions.ResourceNotFoundException;
+import com.eudigital.Matadouro.DTO.BranchDTO;
+import com.eudigital.Matadouro.entities.Branch;
+import com.eudigital.Matadouro.entities.LeatherValueLog;
+import com.eudigital.Matadouro.repositories.BranchRepository;
+import com.eudigital.Matadouro.repositories.LeatherValueLogRepository;
+import com.eudigital.Matadouro.services.exceptions.DatabaseException;
+import com.eudigital.Matadouro.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class BranchService {

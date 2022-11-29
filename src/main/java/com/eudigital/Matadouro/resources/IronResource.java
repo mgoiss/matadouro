@@ -1,4 +1,4 @@
-package com.eudigital.matadouro.resources;
+package com.eudigital.Matadouro.resources;
 
 import java.net.URI;
 
@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.eudigital.matadouro.DTO.IronDTO;
-import com.eudigital.matadouro.DTO.IronInsertDTO;
-import com.eudigital.matadouro.services.IronService;
+import com.eudigital.Matadouro.DTO.IronDTO;
+import com.eudigital.Matadouro.DTO.IronInsertDTO;
+import com.eudigital.Matadouro.services.IronService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

@@ -1,4 +1,4 @@
-package com.eudigital.matadouro.services.exceptions;
+package com.eudigital.Matadouro.services.exceptions;
 
 public class DatabaseException extends RuntimeException {
 	private static final long serialVersionUID = 1L;

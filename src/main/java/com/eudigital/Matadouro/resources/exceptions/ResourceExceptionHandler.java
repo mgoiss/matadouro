@@ -1,4 +1,4 @@
-package com.eudigital.matadouro.resources.exceptions;
+package com.eudigital.Matadouro.resources.exceptions;
 
 import java.time.Instant;
 
@@ -9,8 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import com.eudigital.matadouro.services.exceptions.DatabaseException;
-import com.eudigital.matadouro.services.exceptions.ResourceNotFoundException;
+import com.eudigital.Matadouro.services.exceptions.DatabaseException;
+import com.eudigital.Matadouro.services.exceptions.ResourceNotFoundException;
 
 @ControllerAdvice
 public class ResourceExceptionHandler {

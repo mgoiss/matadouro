@@ -1,4 +1,4 @@
-package com.eudigital.matadouro.services;
+package com.eudigital.Matadouro.services;
 
 import java.util.Optional;
 
@@ -12,13 +12,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.eudigital.matadouro.DTO.CityDTO;
-import com.eudigital.matadouro.entities.City;
-import com.eudigital.matadouro.entities.SlaughterValueLog;
-import com.eudigital.matadouro.repositories.CityRepository;
-import com.eudigital.matadouro.repositories.SlaughterValueLogRepository;
-import com.eudigital.matadouro.services.exceptions.DatabaseException;
-import com.eudigital.matadouro.services.exceptions.ResourceNotFoundException;
+import com.eudigital.Matadouro.DTO.CityDTO;
+import com.eudigital.Matadouro.entities.City;
+import com.eudigital.Matadouro.entities.SlaughterValueLog;
+import com.eudigital.Matadouro.repositories.CityRepository;
+import com.eudigital.Matadouro.repositories.SlaughterValueLogRepository;
+import com.eudigital.Matadouro.services.exceptions.DatabaseException;
+import com.eudigital.Matadouro.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class CityService {
